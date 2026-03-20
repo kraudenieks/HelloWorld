@@ -1,0 +1,203 @@
+<!DOCTYPE html><link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<html lang="lv">
+<head>
+<meta charset="UTF-8">
+<title>Formas un dzērieni</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+margin: 20px;
+}
+
+h1 {
+text-align: center;
+}
+
+h2 {
+margin-top: 30px;
+}
+
+input {
+margin: 5px 0;
+padding: 5px;
+}
+
+button, input[type="button"], input[type="reset"] {
+padding: 5px 10px;
+margin: 5px 5px 5px 0;
+}
+
+p {
+margin: 10px 0;
+}
+
+.bloks {
+margin-bottom: 30px;
+padding: 15px;
+border: 1px solid black;
+}
+</style>
+
+<script>
+function paraditDatumu() {
+document.getElementById("datums").value = new Date().toLocaleDateString();
+}
+
+function saskaitit() {
+let a = Number(document.getElementById("sk1").value);
+let b = Number(document.getElementById("sk2").value);
+document.getElementById("rez").value = a + b;
+}
+
+function atnemt() {
+let a = Number(document.getElementById("sk1").value);
+let b = Number(document.getElementById("sk2").value);
+document.getElementById("rez").value = a - b;
+}
+
+function dalit() {
+let a = Number(document.getElementById("sk1").value);
+let b = Number(document.getElementById("sk2").value);
+
+if (b == 0) {
+document.getElementById("rez").value = "Ar 0 nevar";
+} else {
+document.getElementById("rez").value = a / b;
+}
+}
+
+function reizinat() {
+let a = Number(document.getElementById("sk1").value);
+let b = Number(document.getElementById("sk2").value);
+document.getElementById("rez").value = a * b;
+}
+
+function resetApr() {
+document.getElementById("sk1").value = "";
+document.getElementById("sk2").value = "";
+document.getElementById("rez").value = "";
+}
+
+function vienaDzerienaCena() {
+let dz = document.getElementsByName("drink");
+for (let i = 0; i < dz.length; i++) {
+if (dz[i].checked) {
+document.getElementById("vienaCena").innerHTML = "Jāmaksā " + dz[i].value + " €";
+}
+}
+}
+
+function daudzuDzerienuCena() {
+let dz = document.getElementsByName("drink2");
+let sum = 0;
+
+for (let i = 0; i < dz.length; i++) {
+if (dz[i].checked) {
+sum += Number(dz[i].value);
+}
+}
+
+document.getElementById("daudzuCena").innerHTML = "Jāmaksā " + sum.toFixed(2) + " €";
+}
+</script>
+</head>
+<body>
+<div class="w3-bar w3-black">
+  <a href="index.html" class="w3-bar-item w3-button">Sākums</a>
+  <a href="Excel.html" class="w3-bar-item w3-button">Excel</a>
+  <a href="Word.html" class="w3-bar-item w3-button">Word</a>
+  <a href="3D.html" class="w3-bar-item w3-button">3D</a>
+  <a href="GIMP.html" class="w3-bar-item w3-button">GIMP</a>
+  <a href="InkScape.html" class="w3-bar-item w3-button">Inkscape</a>
+  <a href="otrais.html" class="w3-bar-item w3-button">Autortiesības</a>
+<a href="uzd.html" class="w3-bar-item w3-button">Uzdevumi</a>
+</div>
+<h1>Formas un dzērienu izvēle</h1>
+
+<div class="bloks">
+<h2>1. Datuma forma</h2>
+<form>
+<p>Šodienas datums:
+<input id="datums" name="datums">
+</p>
+
+<p>
+Ja gribi uzzināt šodienas datumu, spied pogu DATUMS
+<input type="button" value="DATUMS" onclick="paraditDatumu()">
+</p>
+
+<p>
+Ja gribi izdzēst datuma lodziņa saturu, spied pogu RESET
+<input type="reset" value="RESET">
+</p>
+</form>
+</div>
+
+<div class="bloks">
+<h2>2. Aprēķinu forma</h2>
+<form>
+<p>1. skaitlis:
+<input type="text" id="sk1" name="sk1">
+</p>
+
+<p>2. skaitlis:
+<input type="text" id="sk2" name="sk2">
+</p>
+
+<p>
+<input type="button" value="+" onclick="saskaitit()">
+<input type="button" value="-" onclick="atnemt()">
+<input type="button" value="/" onclick="dalit()">
+<input type="button" value="x" onclick="reizinat()">
+<input type="button" value="RESET" onclick="resetApr()">
+</p>
+
+<p>Rezultāts:
+<input type="text" id="rez" name="rez" readonly>
+</p>
+</form>
+</div>
+
+<div class="bloks">
+<h2>3. Izvēlies vienu dzērienu</h2>
+<p>Izvēlies dzērienu:</p>
+<form>
+<input type="radio" id="kafija" name="drink" value="3.60">
+<label for="kafija">Kafija</label><br>
+
+<input type="radio" id="sula" name="drink" value="2.50">
+<label for="sula">Sula</label><br>
+
+<input type="radio" id="kakao" name="drink" value="3.20">
+<label for="kakao">Kakao</label><br>
+
+<input type="radio" id="teja" name="drink" value="1.80">
+<label for="teja">Tēja</label><br><br>
+
+<input type="button" value="Jāmaksā" onclick="vienaDzerienaCena()">
+</form>
+<p id="vienaCena"></p>
+</div>
+
+<div class="bloks">
+<h2>4. Izvēlies vairākus dzērienus</h2>
+<form>
+<input type="checkbox" id="kafija2" name="drink2" value="3.60">
+<label for="kafija2">Kafija</label><br>
+
+<input type="checkbox" id="sula2" name="drink2" value="2.50">
+<label for="sula2">Sula</label><br>
+
+<input type="checkbox" id="kakao2" name="drink2" value="3.20">
+<label for="kakao2">Kakao</label><br>
+
+<input type="checkbox" id="teja2" name="drink2" value="1.80">
+<label for="teja2">Tēja</label><br><br>
+
+<input type="button" value="Jāmaksā" onclick="daudzuDzerienuCena()">
+</form>
+<p id="daudzuCena"></p>
+</div>
+
+</body>
+</html>
