@@ -1,0 +1,47 @@
+
+<!DOCTYPE html>
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <title>Baiti</title>
+</head>
+<body>
+<form id="forma">
+    Aprēķināt cik daudz informācijas var lejupielādēt<br>
+    <input type="text" id="sekundes" onfocus="atiestatit()">
+    sekundēs, ja interneta ātrums ir 25 Mbps.
+    <br><br>
+    Atbilde
+    <br><br>
+    <input type="text" id="atbilde" readonly>
+    <input type="radio" name="mervieniba" id="kib" onclick="aprekinat()">
+    <label for="kib">KiB</label>
+    <input type="radio" name="mervieniba" id="kb" onclick="aprekinat()">
+    <label for="kb">KB</label>
+</form>
+
+<script>
+function aprekinat() {
+    let sekundes = document.getElementById("sekundes").value;
+    if (sekundes === "") {
+        document.getElementById("atbilde").value = "";
+        return;
+    }
+    let biti = sekundes * 25 * 1000000;
+    let baiti = biti / 8;
+
+    if (document.getElementById("kb").checked) {
+        document.getElementById("atbilde").value = baiti / 1000;
+    }
+    if (document.getElementById("kib").checked) {
+        document.getElementById("atbilde").value = baiti / 1024;
+    }
+}
+function atiestatit() {
+    document.getElementById("forma").reset();
+    document.getElementById("atbilde").value = "";
+}
+</script>
+
+</body>
+</html>
